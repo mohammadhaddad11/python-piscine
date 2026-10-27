@@ -30,7 +30,7 @@ else:
     print("the global system.")
     print("Package installation path:")
     paths = site.getsitepackages()
-    for package in paths:
-        if "site-packages" in package:
-            print(package)
-            break
+
+    for path in paths:
+        print(path)
+        break

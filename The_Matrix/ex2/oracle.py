@@ -11,8 +11,7 @@ REQUIRED = [
     "ZION_ENDPOINT",
 ]
 
-env_path = os.path.join(os.path.dirname(__file__), ".env")
-load_dotenv(env_path)
+load_dotenv()
 
 missing = []
 config = {}
@@ -37,10 +36,24 @@ if missing:
     print("Please check your .env file.")
     sys.exit(1)
 
+mode = config['MATRIX_MODE'].lower().strip()
+api_key = config['API_KEY']
+masked_api_key = ""
+
+if len(api_key) > 5:
+    masked_api_key = api_key[0:3] + "*" * (len(api_key) - 3)
+else:
+    masked_api_key = "*" * len(api_key)
+
+if mode != "production" and mode != "development":
+    print("Error: Invalid MATRIX_MODE", end=" ")
+    print("It should be eather production or development")
+    sys.exit(1)
+
 print("Configuration loaded:")
-print(f"  Mode: {config['MATRIX_MODE']}")
+print(f"  Mode: {mode}")
 print("  Database: loaded")
-print("  API Access: loaded")
+print(f"  API Access: {masked_api_key}")
 print(f"  Log Level: {config['LOG_LEVEL']}")
 print(f"  Zion Network: {config['ZION_ENDPOINT']}")
 print()

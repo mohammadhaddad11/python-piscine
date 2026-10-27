@@ -13,22 +13,22 @@ if __name__ == "__main__":
     print("=== Achievement Tracker System ===")
 
     achievements = [
-    "Crafting Genius",
-    "World Savior",
-    "Master Explorer",
-    "Collector Supreme",
-    "Untouchable",
-    "Boss Slayer",
-    "Strategist",
-    "Unstoppable",
-    "Speed Runner",
-    "Treasure Hunter",
-    "First Steps",
-    "Sharp Mind",
-    "Survivor",
-    "Hidden Path Finder"
-]
-    
+        "Crafting Genius",
+        "World Savior",
+        "Master Explorer",
+        "Collector Supreme",
+        "Untouchable",
+        "Boss Slayer",
+        "Strategist",
+        "Unstoppable",
+        "Speed Runner",
+        "Treasure Hunter",
+        "First Steps",
+        "Sharp Mind",
+        "Survivor",
+        "Hidden Path Finder"
+    ]
+
     alice = gen_player_achievements()
     bob = gen_player_achievements()
     charlie = gen_player_achievements()

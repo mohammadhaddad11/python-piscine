@@ -1,32 +1,28 @@
 #!/usr/bin/env python3
 
-
 class Plant:
-    def __init__(self, name: str, height: int, age: int) -> None:
+    def __init__(self, name: str, height: float, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
 
-    def get_info(self) -> str:
-        return f"{self.name} ({self.height}cm, {self.age} days)"
-
-    def display(self) -> None:
-        print(f"Created: {self.get_info()}")
+    def show(self) -> None:
+        print(f"{self.name}: {self.height:.1f}cm, {self.age} days old")
 
 
 def create_plants() -> list[Plant]:
-    plant_data: list[tuple[str, int, int]] = [
-        ("Rose", 25, 30),
-        ("Oak", 200, 365),
-        ("Cactus", 5, 90),
-        ("Sunflower", 80, 45),
-        ("Fern", 15, 120),
+    plant_data: list[tuple[str, float, int]] = [
+        ("Rose", 25.0, 30),
+        ("Oak", 200.0, 365),
+        ("Cactus", 5.0, 90),
+        ("Sunflower", 80.0, 45),
+        ("Fern", 15.0, 120),
     ]
 
     plants: list[Plant] = []
 
     for name, height, age in plant_data:
-        plants.append(Plant(name, height, age))
+        plants += [(Plant(name, height, age))]
 
     return plants
 
@@ -37,6 +33,5 @@ if __name__ == "__main__":
     plants = create_plants()
 
     for plant in plants:
-        plant.display()
-
-    print(f"\nTotal plants created: {len(plants)}")
+        print("Created: ", end="")
+        plant.show()

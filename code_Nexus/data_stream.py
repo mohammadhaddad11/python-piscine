@@ -116,32 +116,48 @@ class DataStream:
             self.processors.append(proc)
 
     def process_stream(self, stream: list[Any]) -> None:
-        
+        for i in stream:
+            processed = False
+
+            for proc in self.processors:
+                if proc.validate(i):
+                    try:
+                        proc.ingest(i)
+                        processed = True
+                        break
+                    except ValueError as e:
+                        print(f"Error processing item {i}: {e}")
+
+            if not processed:
+                print(f"DataStream error-Can't process element in stream: {i}")
 
     def print_processors_stats(self) -> None:
-        print("=== DataStream statistics ===")
-        try:
-            for proc in self.processors:
-                print(
-                    f"{proc.__class__.__name__}: total {proc.counter} items processed, remaining {len(proc.data)} on processor"
-                )
-        except Exception as e:
-            print(f"No processor found, no data:")
+        print("== DataStream statistics ==")
+
+        if not self.processors:
+            print("No processor found, no data")
+            return
+
+        for proc in self.processors:
+            print(
+                f"{proc.__class__.__name__}: total {proc.counter} "
+                f"items processed, remaining {len(proc.data)} on processor"
+            )
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Stream ===")
+    print("=== Code Nexus - Data Stream ===\n")
 
     print("Initialize Data Stream...")
     data_stream = DataStream()
 
     data_stream.print_processors_stats()
 
-    numeric = NumericProcessor()
-    text = TextProcessor()
+    num = NumericProcessor()
+    txt = TextProcessor()
     log = LogProcessor()
 
-    first_batch: list[Any] = [
+    first_batch = [
         "Hello world",
         [3.14, -1, 2.71],
         [
@@ -158,16 +174,16 @@ if __name__ == "__main__":
         ["Hi", "five"],
     ]
 
-    print("Registering Numeric Processor")
-    data_stream.register_processor(numeric)
+    print("\nRegistering Numeric Processor\n")
+    data_stream.register_processor(num)
 
     print("Send first batch of data on stream:", first_batch)
     data_stream.process_stream(first_batch)
 
     data_stream.print_processors_stats()
 
-    print("Registering other data processors")
-    data_stream.register_processor(text)
+    print("\nRegistering other data processors")
+    data_stream.register_processor(txt)
     data_stream.register_processor(log)
 
     print("Send the same batch again")
@@ -175,14 +191,14 @@ if __name__ == "__main__":
 
     data_stream.print_processors_stats()
 
-    print("Consume some elements from the data processors:")
+    print("\nConsume some elements from the data processors:")
     print("Numeric 3, Text 2, Log 1")
 
     for _ in range(3):
-        numeric.output()
+        num.output()
 
     for _ in range(2):
-        text.output()
+        txt.output()
 
     for _ in range(1):
         log.output()

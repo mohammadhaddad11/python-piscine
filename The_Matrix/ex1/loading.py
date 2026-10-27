@@ -1,4 +1,4 @@
-from importlib import import_module, util
+from importlib import metadata, util
 import sys
 
 
@@ -22,17 +22,27 @@ def instructions(missing: list[str]) -> None:
 
 
 def pip_poetry_diff() -> None:
-    print(" -Pip: is a package installer")
-    print(" +Poetry: is a dependency & system manager")
-    print(" -pip: virtual env require manual setup ")
-    print(" +poetry: virtual env manage automatically")
-    print(" -pip: Best For: Small and simple projects")
-    print(" +poetry: Best For: Long-term development projects")
+    print("pip:")
+    print("  - Installs and removes Python packages.")
+    print("  - Installs into the currently selected Python environment.")
+    print("  - Can install from requirements files and pyproject.toml.")
+    print("  - leaves dependency management to other tools.")
+    print("  - Has an experimental built-in lock command.")
+
+    print("\nPoetry:")
+    print("  - Manages Python projects and dependencies.")
+    print("  - Creates or selects a virtual environment for the project.")
+    print("  - Updates pyproject.toml when dependencies are added or removed.")
+    print("  - Maintains exact resolved versions in poetry.lock.")
+    print("  - Supports dependency groups and environment synchronization.")
+    print("  - Can build and publish Python packages.")
 
 
 def get_version(package: str) -> str:
-    module = import_module(package)
-    return getattr(module, "__version__", "unknown")
+    try:
+        return metadata.version(package)
+    except metadata.PackageNotFoundError:
+        return "unknown"
 
 
 def check_dependencies() -> bool:

@@ -3,7 +3,8 @@ if __name__ == "__main__":
     scores = []
     print("=== Player Score Analytics ===")
     if len(sys.argv) < 2:
-        print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+        print("No scores provided. Usage:"
+              " python3 ft_score_analytics.py <score1> <score2> ...")
     elif len(sys.argv) >= 2:
         for arg in sys.argv[1:]:
             try:
@@ -19,4 +20,5 @@ if __name__ == "__main__":
             print(f"Low score: {min(scores)}")
             print(f"Score range: {max(scores) - min(scores)}")
         else:
-            print("No scores provided. Usage: python3 ft_score_analytics.py <score1> <score2> ...")
+            print("No scores provided. Usage:"
+                  " python3 ft_score_analytics.py <score1> <score2> ...")
