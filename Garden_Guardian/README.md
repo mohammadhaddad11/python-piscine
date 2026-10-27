@@ -1,17 +1,22 @@
-*42 curriculum exercises. Portfolio maintainer: mhaddad.*
+*42 curriculum exercises · mhaddad*
 
 # Garden Guardian
 
+Five independent examples of Python exceptions, custom error classes, and guaranteed cleanup.
+
 ## Description
 
-Five garden-themed demonstrations explain exception propagation, deliberate
-raising, custom exception hierarchies, and guaranteed cleanup. The purpose is
-to distinguish invalid input from normal flow and keep cleanup explicit.
+| Exercise | Focus |
+| --- | --- |
+| `ex0` | Handling conversion errors |
+| `ex1` | Raising errors for invalid values |
+| `ex2` | Different built-in exception types |
+| `ex3` | `GardenError`, `PlantError`, `WaterError` |
+| `ex4` | `finally` across exceptions and returns |
 
 ## Instructions
 
-Use Python **3.12+**: ex0 uses modern f-string expression syntax. No external
-dependencies are needed.
+Requirements: Python 3.12+. Run from this directory:
 
 ```sh
 python3 ex0/ft_first_exception.py
@@ -21,33 +26,16 @@ python3 ex3/ft_custom_errors.py
 python3 ex4/ft_finally_block.py
 ```
 
-## Technical Implementation
+## Technical Notes
 
-- **ex0:** conversion errors and `try`/`except` handling.
-- **ex1:** explicitly raised temperature-range errors.
-- **ex2:** value, division, missing-file, and type errors.
-- **ex3:** `GardenError`, `PlantError`, and `WaterError` hierarchy.
-- **ex4:** `finally` behavior through exceptional and early-return paths.
+Use **Python 3.12+** because one example uses newer f-string syntax. Printed errors can be intentional demonstration output, not a failed installation.
 
-Each file is an independent exercise, so similarly named exception classes
-need not be the same runtime class across modules. The examples emphasize
-control flow rather than persistent garden management.
-
-## Design Decisions and Verification
-
-Errors printed by these demonstrations are expected learning outcomes. They
-are not evidence of an installation failure. All five scripts passed syntax
-and demonstration checks on Python 3.14.8. The existing remote `WaterError`
-definition in ex4 was retained: its local omission introduced no functional
-improvement and would unnecessarily remove a public class.
+Each exercise defines its own classes and error paths to show how exceptions propagate and where cleanup belongs.
 
 ## Resources
 
-- [Errors and exceptions](https://docs.python.org/3/tutorial/errors.html).
-- [Exception hierarchy](https://docs.python.org/3/library/exceptions.html).
+- [Errors and exceptions](https://docs.python.org/3/tutorial/errors.html) · [Built-in exceptions](https://docs.python.org/3/library/exceptions.html)
 
 ## AI Usage
 
-AI assisted the source comparison, README, and smoke checks for publication.
-Historical implementation assistance is not established; see the
-[collection disclosure](../README.md#ai-usage).
+AI assistance supported documentation and verification during portfolio publication. See the [collection's AI usage note](../README.md#ai-usage).

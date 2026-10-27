@@ -1,17 +1,20 @@
-*42 curriculum exercises. Portfolio maintainer: mhaddad.*
+*42 curriculum exercises · mhaddad*
 
 # Data Deck
 
+Creature-themed examples of abstract factories, multiple inheritance, capabilities, and interchangeable strategies.
+
 ## Description
 
-Creature-based design-pattern exercises covering abstract factories,
-capability interfaces, multiple inheritance, and interchangeable battle
-strategies. Despite the project name, the implementation is not a card-deck
-engine: it demonstrates object collaboration through printed actions.
+| Exercise | Focus |
+| --- | --- |
+| `ex0` | Abstract creature and factory interfaces |
+| `ex1` | Healing and transformation capabilities |
+| `ex2` | Normal, defensive, and aggressive strategies |
 
 ## Instructions
 
-Python 3.10+; standard library only. Execute the drivers from this directory:
+Requirements: Python 3.10+ (standard library only). Run from this directory:
 
 ```sh
 python3 battle.py
@@ -19,41 +22,17 @@ python3 capacitor.py
 python3 tournament.py
 ```
 
-Preserve `ex0/`, `ex1/`, and `ex2/` and their `__init__.py` files. Root drivers
-import those packages directly.
+## Technical Notes
 
-## Technical Implementation
+Factories isolate object creation, while strategies determine how an existing creature acts. Unsupported combinations raise `InvalidStrategyError`.
 
-- **ex0:** abstract creature/factory interfaces and fire/water creature families.
-- **ex1:** healing and transformation capabilities, richer creatures, and matching
-  factories. Multiple inheritance combines creature and capability interfaces.
-- **ex2:** normal, defensive, and aggressive strategies. Strategies check required
-  capabilities and raise `InvalidStrategyError` for unsupported choices.
-- **Drivers:** construct objects, switch behavior, and demonstrate invalid
-  strategy handling.
-
-## Design Decisions
-
-Factories hide the concrete creation choice; strategies separate battle
-behavior from creature construction. Capability checks make incompatible
-combinations visible rather than assuming every creature can heal or transform.
-Actions print messages; there is no implemented HP system, scoring table,
-winner calculation, or persistent tournament engine.
-
-## Verification
-
-All twelve source files are retained unchanged from matching local/remote
-implementations. Syntax checks and all three root demonstrations passed on
-Python 3.14.8, including the handled invalid-strategy scenario.
+Actions are demonstrated through printed output; this is not a complete battle engine with health, scoring, or persistent game state. Keep the existing package directories and `__init__.py` files for imports.
 
 ## Resources
 
-- [Python abstract base classes](https://docs.python.org/3/library/abc.html).
-- [Inheritance](https://docs.python.org/3/tutorial/classes.html#inheritance).
-- [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern).
+- [Abstract base classes](https://docs.python.org/3/library/abc.html) · [Inheritance](https://docs.python.org/3/tutorial/classes.html#inheritance)
+- [Strategy pattern](https://en.wikipedia.org/wiki/Strategy_pattern)
 
 ## AI Usage
 
-AI assisted source comparison, README writing, and demonstration checks for this
-publication. Original AI assistance is not established; see the
-[collection disclosure](../README.md#ai-usage).
+AI assistance supported documentation and verification during portfolio publication. See the [collection's AI usage note](../README.md#ai-usage).
